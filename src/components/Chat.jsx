@@ -2,6 +2,8 @@ import React from 'react'
 import {BsFillCameraVideoFill} from "react-icons/bs"
 import {FaUserPlus} from "react-icons/fa"
 import {FiMoreHorizontal} from "react-icons/fi"
+import Messages from './Messages'
+import Input from "./Input"
 
 
 const Chat = () => {
@@ -15,6 +17,8 @@ const Chat = () => {
             <FiMoreHorizontal className='mx-2 cursor-pointer'/>
         </div>
       </div>
+      <Messages />
+      <Input />
     </div>
   )
 }

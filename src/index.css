@@ -10,3 +10,7 @@
 .sidebar {
     flex:1;
 }
+
+.messages {
+    height: calc(100% - 125px);
+}
