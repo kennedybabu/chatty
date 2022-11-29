@@ -14,3 +14,14 @@
 .messages {
     height: calc(100% - 125px);
 }
+
+
+.owner {
+    flex-direction: row-reverse;  
+}
+
+
+.owner p {
+    background-color: #8da4f1;
+    color: white;
+}
