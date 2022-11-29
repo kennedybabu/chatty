@@ -25,3 +25,16 @@
     background-color: #8da4f1;
     color: white;
 }
+
+
+.message p {
+    max-width: max-content;
+}
+
+
+.owner .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
