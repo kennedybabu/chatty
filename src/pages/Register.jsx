@@ -4,12 +4,14 @@ import {  createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
 import { auth, storage, db } from '../firebase'
 import {  ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import {doc, setDoc} from "firebase/firestore"
+import { useNavigate } from 'react-router-dom';
 
 
 
 const Register = () => {
 
   const [error, setError] = useState('')
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -27,18 +29,13 @@ const Register = () => {
 
         const uploadTask = uploadBytesResumable(storageRef, file);
 
-        // Register three observers:
-        // 1. 'state_changed' observer, called any time the state changes
-        // 2. Error observer, called on failure
-        // 3. Completion observer, called on successful completion
+     
         uploadTask.on(          
           (error) => {
-            // Handle unsuccessful uploadsse
             setError(error)
           }, 
           () => {
-            // Handle successful uploads on complete
-            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+        
             getDownloadURL(uploadTask.snapshot.ref).then(async(downloadURL) => {
               await updateProfile(response.user,{
                 displayName,
@@ -50,14 +47,15 @@ const Register = () => {
                 email,
                 photoURL:downloadURL
               })
+
+              await setDoc(doc(db,'userChats', response.user.uid), {
+
+              })
+              navigate('/')
                
             });
           }
         );
-
-      
-
-
     } catch(err) {
       setError(err)
     }
