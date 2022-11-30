@@ -4,7 +4,7 @@ import {  createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
 import { auth, storage, db } from '../firebase'
 import {  ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import {doc, setDoc} from "firebase/firestore"
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 
 
@@ -77,7 +77,7 @@ const Register = () => {
                 <label className='flex items-center my-2 cursor-pointer' htmlFor="file"><FcAddImage className='text-4xl mr-2' /><span className='text-[12px] text-gray-500'>Add an avatar</span></label>
                 <button className='w-full p-2 bg-red-400'>sign up</button>
             </form>
-            <p>You do have an acc? Login</p>
+            <p>You do have an acc? <Link to='/register'>Login</Link></p>
         </div>
       </div>
   )
