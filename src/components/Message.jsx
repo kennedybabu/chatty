@@ -5,20 +5,21 @@ import { ChatContext } from '../context/ChatContext'
 const Message = ({message}) => {
   const {currentUser} = useContext(AuthContext)
   const {data} = useContext(ChatContext)
-  
+
   return (
-    <div className='flex mb-2 gap-3 owner message'>
+    <div className={`flex mb-2 gap-3 message ${message.senderId === currentUser.uid  &&  "owner"}`}>
       <div className='flex flex-col text-gray-400'>
-        <div className='w-[50px] h-[50px] bg-red-400 rounded-full'>
-          
+        <div className='w-[30px] h-[30px] rounded-full'>
+          <img className='w-full h-full rounded-full' src={message.senderId === currentUser.uid ? currentUser.photoURL : data.user.photoURL} alt="/" />
         </div>
         <span className='text-sm'>just now</span>
       </div>
       <div className='content w-full'>
-        <p className='bg-white max-w-[max-content] px-[20px] py-[10px] rounded-tr-[10px] rounded-br-[10px] rounded-bl-[10px]'>hello</p>
-        <div className='w-[50%] h-[100px] bg-red-300 my-1'>
-
-        </div>
+      { message.text && <p className='bg-white max-w-[max-content] px-[20px] py-[10px] rounded-tr-[10px] rounded-br-[10px] rounded-bl-[10px]'>{message.text}</p>
+}        {message.img && 
+        <div className='w-[50%] h-[100px] my-1'>
+            <img src={message.img} alt="/" className='w-full'/>
+        </div>}
       </div>
     </div>
   )
