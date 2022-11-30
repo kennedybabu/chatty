@@ -1,10 +1,15 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import { AuthContext } from '../context/AuthContext'
 import { ChatContext } from '../context/ChatContext'
 
 const Message = ({message}) => {
   const {currentUser} = useContext(AuthContext)
   const {data} = useContext(ChatContext)
+  const ref = useRef()
+
+  useEffect(() => {
+    ref.current?.scrollIntoView({behavior: "smooth"})
+  }, [message])
 
   return (
     <div className={`flex mb-2 gap-3 message ${message.senderId === currentUser.uid  &&  "owner"}`}>
@@ -17,7 +22,7 @@ const Message = ({message}) => {
       <div className='content w-full'>
       { message.text && <p className='bg-white max-w-[max-content] px-[20px] py-[10px] rounded-tr-[10px] rounded-br-[10px] rounded-bl-[10px]'>{message.text}</p>
 }        {message.img && 
-        <div className='w-[50%] h-[100px] my-1'>
+        <div className='w-[50%] h-[100px] my-1 mb-[50px]'>
             <img src={message.img} alt="/" className='w-full'/>
         </div>}
       </div>
