@@ -1,6 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { AuthContext } from '../context/AuthContext'
+import { ChatContext } from '../context/ChatContext'
 
-const Message = () => {
+const Message = ({message}) => {
+  const {currentUser} = useContext(AuthContext)
+  const {data} = useContext(ChatContext)
+  
   return (
     <div className='flex mb-2 gap-3 owner message'>
       <div className='flex flex-col text-gray-400'>

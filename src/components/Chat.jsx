@@ -1,16 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {BsFillCameraVideoFill} from "react-icons/bs"
 import {FaUserPlus} from "react-icons/fa"
 import {FiMoreHorizontal} from "react-icons/fi"
 import Messages from './Messages'
 import Input from "./Input"
+import { ChatContext } from '../context/ChatContext'
 
 
 const Chat = () => {
+  const {data} = useContext(ChatContext)
+
+
   return (
     <div className='chat'>
       <div className='w-ful h-[60px] flex justify-between items-center px-4 bg-[#5d5b8d] rounded-tr-[10px]'>
-        <span>kenny</span>
+        <span>{data.user?.displayName}</span>
         <div className='flex h-full items-center text-gray-300'>
             <BsFillCameraVideoFill className='mx-2 cursor-pointer'/>
             <FaUserPlus className='mx-2 cursor-pointer'/>
